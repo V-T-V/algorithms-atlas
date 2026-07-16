@@ -1,0 +1,54 @@
+export interface Job {
+  id: string;
+  arrival: number;
+  burst: number;
+  priority?: number;
+}
+export interface Segment {
+  id: string;
+  start: number;
+  end: number;
+}
+export interface SchedResult {
+  order: string[];
+  segments: Segment[];
+  avgWait: number;
+  avgTurnaround: number;
+}
+export interface SjfHooks {
+  onPick?: (j: Job, time: number) => void;
+  onResult?: (r: SchedResult) => void;
+}
+export function sjfNonPreemptive(jobs: Job[], hooks: SjfHooks = {}): SchedResult {
+  const remaining = [...jobs].sort((a, b) => a.arrival - b.arrival);
+  const segments: Segment[] = [];
+  const order: string[] = [];
+  let time = 0,
+    totalWait = 0,
+    totalTurn = 0;
+  while (remaining.length) {
+    const ready = remaining.filter((j) => j.arrival <= time);
+    let pick: Job;
+    if (ready.length === 0) {
+      pick = remaining[0]!;
+      time = pick.arrival;
+    } else pick = ready.reduce((a, b) => (a.burst < b.burst ? a : b));
+    const idx = remaining.indexOf(pick);
+    remaining.splice(idx, 1);
+    const wait = Math.max(0, time - pick.arrival);
+    totalWait += wait;
+    totalTurn += wait + pick.burst;
+    hooks.onPick?.(pick, time);
+    order.push(pick.id);
+    segments.push({ id: pick.id, start: time, end: time + pick.burst });
+    time += pick.burst;
+  }
+  const r = {
+    order,
+    segments,
+    avgWait: totalWait / jobs.length,
+    avgTurnaround: totalTurn / jobs.length,
+  };
+  hooks.onResult?.(r);
+  return r;
+}

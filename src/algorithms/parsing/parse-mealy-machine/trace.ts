@@ -1,0 +1,25 @@
+import type { BarRole, Frame } from '../../../types.ts';
+import { TraceRecorder } from '../../../core/recorder.ts';
+import { buildSeqDetector } from './impl.ts';
+
+export const DEFAULT_INPUT = ['1', '1', '0', '1', '1', '1'];
+
+export function buildTrace(input: string[] = DEFAULT_INPUT): Frame[] {
+  const rec = new TraceRecorder();
+  rec.begin({ zh: `输入: ${input.join('')}`, en: `Input: ${input.join('')}` }).commit();
+  const out = buildSeqDetector({
+    onEdge: (f, a, to, o) =>
+      rec
+        .begin({ zh: `${f} -${a}-> ${to} / 出 ${o}`, en: `${f} -${a}-> ${to} / out ${o}` })
+        .setAux([
+          { label: 'state', value: to, role: 'pivot' as BarRole },
+          { label: 'out', value: o, role: (o === '1' ? 'final' : 'default') as BarRole },
+        ])
+        .commit(),
+  }).run(input);
+  rec
+    .begin({ zh: `输出: ${out.join('')}`, en: `Output: ${out.join('')}` })
+    .setAux([{ label: 'output', value: out.join(''), role: 'final' as BarRole }])
+    .commit();
+  return rec.build();
+}

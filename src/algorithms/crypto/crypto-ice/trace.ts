@@ -1,0 +1,23 @@
+import type { BarRole, Frame } from '../../../types.ts';
+import { TraceRecorder } from '../../../core/recorder.ts';
+import { iceEncrypt } from './impl.ts';
+export const DEFAULT_INPUT: any = { key: [1, 2, 3, 4], block: [1, 2, 3, 4, 5, 6, 7, 8] };
+export function buildTrace(input = DEFAULT_INPUT): Frame[] {
+  const rec = new TraceRecorder();
+  rec.begin({ zh: 'ICE', en: 'ICE' }).commit();
+  const ct = iceEncrypt(input.key, input.block, {
+    onRound: (r, l, rr) =>
+      rec
+        .begin({ zh: '第 ' + r + ' 轮', en: 'round ' + r })
+        .setAux([
+          { label: 'L', value: l.toString(16), role: 'compare' as BarRole },
+          { label: 'R', value: rr.toString(16), role: 'final' as BarRole },
+        ])
+        .commit(),
+  });
+  rec
+    .begin({ zh: ct.length + ' 字节', en: ct.length + 'B' })
+    .setAux([{ label: 'bytes', value: String(ct.length), role: 'final' as BarRole }])
+    .commit();
+  return rec.build();
+}

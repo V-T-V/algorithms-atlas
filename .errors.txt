@@ -1,0 +1,106 @@
+src/algorithms/backtracking/bt-knight-tour/trace.ts(9,210): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-knight-tour/trace.ts(10,74): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(6,13): error TS2538: Type 'undefined' cannot be used as an index type.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(6,37): error TS2538: Type 'undefined' cannot be used as an index type.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(7,115): error TS18048: 'dr' is possibly 'undefined'.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(7,128): error TS18048: 'dc' is possibly 'undefined'.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(12,93): error TS18048: 'dr' is possibly 'undefined'.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(12,101): error TS18048: 'dc' is possibly 'undefined'.
+src/algorithms/backtracking/bt-minesweeper/impl.ts(14,7): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+src/algorithms/backtracking/bt-minesweeper/trace.ts(9,143): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-minesweeper/trace.ts(10,47): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-n-queens/trace.ts(9,151): error TS2345: Argument of type '("." | "Q")[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-rat-in-maze/trace.ts(8,139): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-sudoku-solver/trace.ts(9,168): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-sudoku-solver/trace.ts(10,47): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/backtracking/bt-word-search/impl.ts(11,5): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+src/algorithms/game/game-bandit-ucb/impl.ts(22,5): error TS2532: Object is possibly 'undefined'.
+src/algorithms/game/game-correlated-equilibrium/trace.ts(11,11): error TS2339: Property 'begin' does not exist on type 'number'.
+src/algorithms/game/game-strategic-voting/impl.ts(7,27): error TS2532: Object is possibly 'undefined'.
+src/algorithms/game/game-strategic-voting/impl.ts(16,7): error TS2532: Object is possibly 'undefined'.
+src/algorithms/game/game-strategic-voting/impl.ts(16,30): error TS2532: Object is possibly 'undefined'.
+src/algorithms/greedy/greedy-best-fit/impl.ts(9,66): error TS2532: Object is possibly 'undefined'.
+src/algorithms/greedy/greedy-bin-packing-ffd/impl.ts(8,75): error TS2532: Object is possibly 'undefined'.
+src/algorithms/greedy/greedy-list-schedule/impl.ts(8,5): error TS2532: Object is possibly 'undefined'.
+src/algorithms/greedy/greedy-load-balance-lpt/impl.ts(8,5): error TS2532: Object is possibly 'undefined'.
+src/algorithms/greedy/greedy-multiway-number/impl.ts(9,5): error TS2532: Object is possibly 'undefined'.
+src/algorithms/hashing/hash-counting-bloom/impl.ts(7,129): error TS2532: Object is possibly 'undefined'.
+src/algorithms/hashing/hash-counting-bloom/impl.ts(8,136): error TS2532: Object is possibly 'undefined'.
+src/algorithms/hashing/hash-counting-bloom/impl.ts(8,156): error TS2532: Object is possibly 'undefined'.
+src/algorithms/hashing/hash-counting-bloom/impl.ts(9,70): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+src/algorithms/hashing/hash-hopscotch-probe/impl.ts(25,23): error TS2532: Object is possibly 'undefined'.
+src/algorithms/hashing/hash-xxh3-mix/impl.ts(11,11): error TS2365: Operator '&' cannot be applied to types 'number' and 'bigint'.
+src/algorithms/hashing/hash-xxh3-mix/impl.ts(11,12): error TS2365: Operator '+' cannot be applied to types 'bigint' and 'number'.
+src/algorithms/hashing/hash-xxh3-mix/impl.ts(16,10): error TS2365: Operator '>>>' cannot be applied to types 'bigint' and '33n'.
+src/algorithms/hashing/hash-xxh3-mix/impl.ts(17,10): error TS2365: Operator '>>>' cannot be applied to types 'bigint' and '29n'.
+src/algorithms/hashing/hash-xxh3-mix/impl.ts(18,10): error TS2365: Operator '>>>' cannot be applied to types 'bigint' and '32n'.
+src/algorithms/hashing/hash-zobrist-board/impl.ts(7,42): error TS2365: Operator '&' cannot be applied to types 'number' and 'bigint'.
+src/algorithms/hashing/hash-zobrist-board/impl.ts(8,3): error TS2322: Type 'number[][]' is not assignable to type 'bigint[][]'.
+src/algorithms/hashing/hash-zobrist-board/impl.ts(9,3): error TS2322: Type 'bigint[][] | null' is not assignable to type 'bigint[][]'.
+src/algorithms/list/list-detect-cycle-start-2/impl.ts(22,35): error TS18047: 'fast' is possibly 'null'.
+src/algorithms/list/list-detect-cycle-start-2/impl.ts(25,24): error TS18047: 'p' is possibly 'null'.
+src/algorithms/list/list-flatten-2/impl.ts(9,11): error TS7022: 'c' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
+src/algorithms/list/list-mid-2/impl.ts(21,20): error TS18047: 'slow' is possibly 'null'.
+src/algorithms/list/list-oddeven-2/impl.ts(22,27): error TS2322: Type 'ListNode | null' is not assignable to type 'ListNode'.
+src/algorithms/list/list-reorder-2/impl.ts(25,50): error TS2322: Type 'ListNode | null' is not assignable to type 'ListNode'.
+src/algorithms/list/list-reverse-kgroup-2/impl.ts(32,21): error TS18047: 'groupStart' is possibly 'null'.
+src/algorithms/list/list-reverse-kgroup-2/impl.ts(34,5): error TS18047: 'groupStart' is possibly 'null'.
+src/algorithms/list/list-reverse-kgroup-2/impl.ts(35,5): error TS2322: Type 'ListNode | null' is not assignable to type 'ListNode'.
+src/algorithms/list/list-sort-merge-2/impl.ts(25,50): error TS2322: Type 'ListNode | null' is not assignable to type 'ListNode'.
+src/algorithms/misc/misc-euler-totient-range/impl.ts(6,57): error TS2532: Object is possibly 'undefined'.
+src/algorithms/misc/misc-euler-totient-range/impl.ts(6,67): error TS2532: Object is possibly 'undefined'.
+src/algorithms/misc/misc-partition-p/impl.ts(5,61): error TS2532: Object is possibly 'undefined'.
+src/algorithms/misc/misc-sieve-atkin/impl.ts(10,57): error TS2532: Object is possibly 'undefined'.
+src/algorithms/misc/misc-sieve-atkin/impl.ts(12,41): error TS2532: Object is possibly 'undefined'.
+src/algorithms/misc/misc-sieve-atkin/impl.ts(14,51): error TS2532: Object is possibly 'undefined'.
+src/algorithms/network/net-connected-components/impl.ts(24,11): error TS2339: Property 'onComponent' does not exist on type '{}'.
+src/algorithms/network/net-connected-components/impl.ts(26,9): error TS2339: Property 'onResult' does not exist on type '{}'.
+src/algorithms/network/net-connected-components/trace.ts(11,60): error TS7006: Parameter 'm' implicitly has an 'any' type.
+src/algorithms/network/net-connected-components/trace.ts(11,162): error TS7006: Parameter 'x' implicitly has an 'any' type.
+src/algorithms/network/net-connected-components/trace.ts(11,165): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/algorithms/network/net-grid-flood-fill/trace.ts(9,157): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/network/net-grid-flood-fill/trace.ts(10,47): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/network/net-grid-shortest/impl.ts(12,22): error TS18048: 'dr' is possibly 'undefined'.
+src/algorithms/network/net-grid-shortest/impl.ts(12,35): error TS18048: 'dc' is possibly 'undefined'.
+src/algorithms/network/net-longest-path-dag/impl.ts(8,78): error TS2532: Object is possibly 'undefined'.
+src/algorithms/network/net-num-islands/trace.ts(8,147): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/network/net-prim-mst/impl.ts(7,78): error TS2532: Object is possibly 'undefined'.
+src/algorithms/network/net-prim-mst/impl.ts(7,115): error TS2532: Object is possibly 'undefined'.
+src/algorithms/network/net-rotten-oranges/impl.ts(12,22): error TS18048: 'dr' is possibly 'undefined'.
+src/algorithms/network/net-rotten-oranges/impl.ts(12,35): error TS18048: 'dc' is possibly 'undefined'.
+src/algorithms/network/net-time-needed/impl.ts(4,54): error TS2532: Object is possibly 'undefined'.
+src/algorithms/network/net-union-find/trace.ts(9,47): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+src/algorithms/network/net-walls-gates/impl.ts(10,22): error TS18048: 'dr' is possibly 'undefined'.
+src/algorithms/network/net-walls-gates/impl.ts(10,35): error TS18048: 'dc' is possibly 'undefined'.
+src/algorithms/network/net-walls-gates/trace.ts(10,47): error TS2345: Argument of type 'string[][]' is not assignable to parameter of type 'Cell[][]'.
+src/algorithms/optimization/opt-ada-bound/impl.ts(19,7): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-averaging-sgd/impl.ts(8,35): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-bat-2/impl.ts(11,39): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-bat-2/impl.ts(11,87): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-firefly-2/impl.ts(12,41): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-gradient-batch-3/impl.ts(16,33): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-lion/impl.ts(11,7): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-particle-swarm-2/impl.ts(8,19): error TS2488: Type 'number' must have a '[Symbol.iterator]()' method that returns an iterator.
+src/algorithms/optimization/opt-particle-swarm-2/impl.ts(15,9): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-polyak-momentum/impl.ts(9,77): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-quasi-dfp-2/impl.ts(9,57): error TS2769: No overload matches this call.
+src/algorithms/optimization/opt-quasi-dfp-2/impl.ts(18,59): error TS2769: No overload matches this call.
+src/algorithms/optimization/opt-shampoo/impl.ts(9,85): error TS2532: Object is possibly 'undefined'.
+src/algorithms/optimization/opt-sqp/impl.ts(9,16): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'Number'.
+src/algorithms/optimization/opt-sqp/impl.ts(10,17): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type 'Number'.
+src/algorithms/optimization/opt-sqp/trace.ts(7,38): error TS2322: Type 'number[]' is not assignable to type 'number'.
+src/algorithms/scheduling/sched-job-pool/trace.ts(8,33): error TS2345: Argument of type 'Policy | undefined' is not assignable to parameter of type 'Policy'.
+src/algorithms/scheduling/sched-rate-monotonic/trace.ts(9,35): error TS2339: Property 'toFixed' does not exist on type '{ id: string; priority: number; }[]'.
+src/algorithms/scheduling/sched-rate-monotonic/trace.ts(9,68): error TS2339: Property 'toFixed' does not exist on type '{ id: string; priority: number; }[]'.
+src/algorithms/scheduling/sched-rate-monotonic/trace.ts(9,119): error TS2339: Property 'toFixed' does not exist on type '{ id: string; priority: number; }[]'.
+src/algorithms/scheduling/sched-virtual-round-robin/impl.ts(25,44): error TS2532: Object is possibly 'undefined'.
+src/algorithms/tree/tree-kth-smallest-bst-2/trace.ts(7,25): error TS2345: Argument of type '(number | null)[]' is not assignable to parameter of type 'number[]'.
+src/algorithms/tree/tree-range-sum-bst-2/trace.ts(7,25): error TS2345: Argument of type '(number | null)[]' is not assignable to parameter of type 'number[]'.
+test/greedy/greedy-ski-rental.test.ts(13,42): error TS2304: Cannot find name 'buildTrace'.
+test/optimization/opt-sqp.test.ts(6,38): error TS2322: Type 'number[]' is not assignable to type 'number'.
+test/scheduling/sched-job-pool.test.ts(6,128): error TS2345: Argument of type 'Policy | undefined' is not assignable to parameter of type 'Policy'.
+test/tree/tree-kth-smallest-bst-2.test.ts(6,48): error TS2322: Type 'null' is not assignable to type 'number'.
+test/tree/tree-kth-smallest-bst-2.test.ts(6,53): error TS2322: Type 'null' is not assignable to type 'number'.
+test/tree/tree-kth-smallest-bst-2.test.ts(7,48): error TS2322: Type 'null' is not assignable to type 'number'.
+test/tree/tree-kth-smallest-bst-2.test.ts(7,53): error TS2322: Type 'null' is not assignable to type 'number'.
+test/tree/tree-range-sum-bst-2.test.ts(6,58): error TS2322: Type 'null' is not assignable to type 'number'.

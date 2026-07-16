@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-07-09T01:50:52.843Z",
+  "project": "algorithms-atlas",
+  "algorithms": 154,
+  "categories": 30,
+  "testFiles": 156,
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "algorithm-count",
+      "ok": true,
+      "detail": "154 algorithms discovered"
+    },
+    {
+      "id": "complete-algorithm-modules",
+      "ok": true,
+      "detail": "154/154 algorithms include meta/impl/trace/index"
+    },
+    {
+      "id": "category-coverage",
+      "ok": true,
+      "detail": "30 categories represented"
+    },
+    {
+      "id": "readme-current-count",
+      "ok": true,
+      "detail": "README states the current algorithm count"
+    },
+    {
+      "id": "learning-paths",
+      "ok": true,
+      "detail": "Learning path filters are present"
+    },
+    {
+      "id": "taxonomy-source",
+      "ok": true,
+      "detail": "Taxonomy source is present"
+    },
+    {
+      "id": "test-coverage-surface",
+      "ok": true,
+      "detail": "156 test files discovered"
+    },
+    {
+      "id": "curriculum-export",
+      "ok": true,
+      "detail": "4 learning paths exported for 154 algorithms"
+    },
+    {
+      "id": "curriculum-markdown",
+      "ok": true,
+      "detail": "Markdown curriculum handoff is present"
+    }
+  ]
+}
