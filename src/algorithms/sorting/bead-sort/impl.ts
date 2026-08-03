@@ -28,8 +28,14 @@ export function beadSort(arr: readonly number[], hooks: BeadSortHooks = {}): num
   const a = [...arr];
   const n = a.length;
   if (n === 0) return a;
+  // 逐元素校验非负整数（不能只看 max——混合正负时 max>0 但负数会被静默吞掉）
+  for (let i = 0; i < n; i++) {
+    const v = a[i]!;
+    if (!Number.isInteger(v) || v < 0) {
+      throw new RangeError(`beadSort: only supports non-negative integers, got ${v} at index ${i}`);
+    }
+  }
   const max = Math.max(...a);
-  if (max < 0) throw new RangeError('beadSort: only supports non-negative integers');
 
   // poles[c] = 第 c 列下落后已堆叠的珠子数
   const poles = new Array<number>(max).fill(0);
