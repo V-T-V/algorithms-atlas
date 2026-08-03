@@ -14,6 +14,16 @@
 **high（很高完成度，工作区规模最大）。** 3046 个完整算法（30 大类全覆盖）、3040 份单测文件。
 门禁状态以 `npm run product:check` 为准（见下「如何运行」）；数量以 product:check 实际发现为准，文档与 README 需同步。
 
+### R10 深度推进记录（r10-r1 ~ r10-r8）
+- **r1**: 修复 radix-msd-dec 栈溢出 bug + 文档计数核对 + 21 个模块 createDemo buildTrace 绑定
+- **r2**: 增强 sliding-window/group-knapsack 可视化录制 + 全仓类型错误修复
+- **r3**: 补全 7 个算法单元测试 + 修复 math-expression-parser 空白符解析 bug
+- **r4**: 修复 counting/radix-sort 负数静默错排 bug + radix 测试补强
+- **r5**: 图算法边界覆盖 + 基于属性的随机图测试
+- **r6**: 核心基础设施（playback/recorder）单元测试——此前零覆盖
+- **r7**: 实现真正的「组合总和」算法 + 分步回溯动画（原为占位 stub）
+- **r8**: 修复 bead-sort 混合正负数静默吞 bug（逐元素校验，对齐 counting-sort 模式）+ 5 边界测试
+
 ## 技术栈与架构
 - **语言**：TypeScript 5.9 strict，Vite
 - **核心**：trace 录制 + 通用播放器（算法与渲染解耦）
