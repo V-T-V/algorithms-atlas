@@ -43,7 +43,7 @@ interface Cursor {
 }
 
 function skipWs(c: Cursor): void {
-  while (c.pos < c.s.length && / s/.test(c.s[c.pos]!)) c.pos++;
+  while (c.pos < c.s.length && /\s/.test(c.s[c.pos]!)) c.pos++;
 }
 function peek(c: Cursor): string {
   return c.pos < c.s.length ? c.s[c.pos]! : '';
