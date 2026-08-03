@@ -48,3 +48,12 @@ test('countingSort 钩子被调用', () => {
   assert.equal(prefix, 1, '应做一次前缀和');
   assert.equal(collect, 3, '应收集 3 个元素到输出');
 });
+
+test('countingSort 拒绝负数（否则静默错排）', () => {
+  assert.throws(() => countingSort([-1, 0, 1]), /仅支持非负整数/);
+  assert.throws(() => countingSort([3, -2]), /仅支持非负整数/);
+});
+
+test('countingSort 拒绝非整数', () => {
+  assert.throws(() => countingSort([1, 2.5]), /仅支持非负整数/);
+});

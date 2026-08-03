@@ -28,6 +28,14 @@ export function countingSort(arr: readonly number[], hooks: CountingSortHooks = 
   if (n === 0) return [];
   if (n === 1) return [arr[0]!];
 
+  // 0) 输入校验：本实现仅支持非负整数；负数会让 count[v] 落到稀疏槽导致静默错排。
+  for (let i = 0; i < n; i++) {
+    const v = arr[i]!;
+    if (!Number.isInteger(v) || v < 0) {
+      throw new Error(`countingSort: 仅支持非负整数，遇到非法元素 ${v}（下标 ${i}）`);
+    }
+  }
+
   // 1) 找值域上界
   let maxVal = arr[0]!;
   for (let i = 1; i < n; i++) if (arr[i]! > maxVal) maxVal = arr[i]!;

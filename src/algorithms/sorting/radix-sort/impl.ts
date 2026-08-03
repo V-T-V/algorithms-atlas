@@ -28,6 +28,14 @@ export function radixSort(arr: readonly number[], hooks: RadixSortHooks = {}): n
   const n = a.length;
   if (n <= 1) return a;
 
+  // 输入校验：LSD 基数排序仅支持非负整数；负数的「位」会带符号，导致静默错排。
+  for (let i = 0; i < n; i++) {
+    const v = a[i]!;
+    if (!Number.isInteger(v) || v < 0) {
+      throw new Error(`radixSort: 仅支持非负整数，遇到非法元素 ${v}（下标 ${i}）`);
+    }
+  }
+
   // 找最大值，确定要处理多少位
   let maxVal = a[0]!;
   for (let i = 1; i < n; i++) if (a[i]! > maxVal) maxVal = a[i]!;
