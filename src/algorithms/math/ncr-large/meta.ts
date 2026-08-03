@@ -3,7 +3,7 @@
 import type { AlgorithmMeta } from '../../../types.ts';
 
 export const meta: AlgorithmMeta = {
-  id: 'nCr-large',
+  id: 'ncr-large',
   categoryId: 'math',
   title: { zh: '大数组合数（精确 BigInt）', en: 'Large Combination (Exact BigInt)' },
   summary: {

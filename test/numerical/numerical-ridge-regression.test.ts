@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { ridgeRegression, predict } from '../../src/algorithms/numerical/ridge-regression/impl.ts';
+import { ridgeRegression, predict } from '../../src/algorithms/numerical/numerical-ridge-regression/impl.ts';
 
 const close = (a: number, b: number, eps = 1e-4): boolean => Math.abs(a - b) < eps;
 

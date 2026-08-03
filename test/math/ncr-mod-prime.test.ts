@@ -4,7 +4,7 @@ import {
   precomputeFactorials,
   nCrSmall,
   nCrLucas,
-} from '../../src/algorithms/math/nCr-mod-prime/impl.ts';
+} from '../../src/algorithms/math/ncr-mod-prime/impl.ts';
 
 test('nCrSmall 小组合数', () => {
   const ctx = precomputeFactorials(20, 1000000007);

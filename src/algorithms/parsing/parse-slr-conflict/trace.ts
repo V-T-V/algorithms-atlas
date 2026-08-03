@@ -38,12 +38,17 @@ export function buildTrace(input: CFG = DEFAULT_INPUT): Frame[] {
 
   const hooks: SLRHooks = {
     onState: (s) => {
-      const itemStrs = s.items.map((it) => {
-        const p = input.productions[it.prodIndex]!;
+      // detectSLRConflicts 内部增广了产生式表（头部插入 S' → start），
+      // 这里同步构造同一张表来还原项目字符串；跳过虚拟起始项。
+      const augProds = [{ lhs: '__START__', rhs: [input.start] }, ...input.productions];
+      const itemStrs: string[] = [];
+      for (const it of s.items) {
+        const p = augProds[it.prodIndex];
+        if (!p || p.lhs === '__START__') continue; // 跳过增广项
         const before = p.rhs.slice(0, it.dot).join(' ');
         const after = p.rhs.slice(it.dot).join(' ');
-        return `${p.lhs} → ${before}${before ? ' ' : ''}· ${after}`;
-      });
+        itemStrs.push(`${p.lhs} → ${before}${before ? ' ' : ''}· ${after}`);
+      }
       rec
         .begin({
           zh: `构造状态 I${s.id}（${s.items.length} 项目）`,

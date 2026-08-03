@@ -3,7 +3,7 @@
 import type { AlgorithmMeta } from '../../../types.ts';
 
 export const meta: AlgorithmMeta = {
-  id: 'nCr-mod-prime',
+  id: 'ncr-mod-prime',
   categoryId: 'math',
   title: { zh: '组合数模素数', en: 'Combination mod Prime' },
   summary: {

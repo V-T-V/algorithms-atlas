@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { nCrLarge } from '../../src/algorithms/math/nCr-large/impl.ts';
+import { nCrLarge } from '../../src/algorithms/math/ncr-large/impl.ts';
 
 test('nCrLarge 小值与朴素一致', () => {
   assert.equal(nCrLarge(0, 0), 1n);

@@ -3,7 +3,7 @@
 import type { AlgorithmMeta } from '../../../types.ts';
 
 export const meta: AlgorithmMeta = {
-  id: 'schröder-number',
+  id: 'schroder-number',
   categoryId: 'math',
   title: { zh: '大 Schröder 数', en: 'Large Schröder Number' },
   summary: {

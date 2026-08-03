@@ -3,7 +3,7 @@
 import type { AlgorithmMeta } from '../../../types.ts';
 
 export const meta: AlgorithmMeta = {
-  id: 'parse-slConflict',
+  id: 'parse-slr-conflict',
   categoryId: 'parsing',
   title: { zh: 'SLR(1) 冲突检测', en: 'SLR(1) Conflict Detection' },
   summary: {

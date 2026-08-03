@@ -4,8 +4,8 @@ import {
   detectSLRConflicts,
   type CFG,
   type SLRHooks,
-} from '../../src/algorithms/parsing/parse-slConflict/impl.ts';
-import { buildTrace, DEFAULT_INPUT } from '../../src/algorithms/parsing/parse-slConflict/trace.ts';
+} from '../../src/algorithms/parsing/parse-slr-conflict/impl.ts';
+import { buildTrace, DEFAULT_INPUT } from '../../src/algorithms/parsing/parse-slr-conflict/trace.ts';
 
 // 二义文法 S → a | S ; S：对 ; 存在 shift/reduce 冲突
 const G: CFG = DEFAULT_INPUT;

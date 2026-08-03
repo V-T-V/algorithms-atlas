@@ -212,6 +212,14 @@ function computeFollow(cfg: CFG, first: Record<string, Set<string>>): Record<str
 /**
  * 构造 LR(0) 自动机 + 检测 SLR(1) 冲突。
  *
+ * 算法步骤：
+ *   1. 增广文法：新增 S' → start（虚拟产生式），保证初始状态闭包能展开
+ *      起始符的所有产生式（否则形如 S → S ; S 的递归/列表结构永远不会被探索）。
+ *   2. 从 S' → · start 的闭包出发，构造 LR(0) 项目集规范族。
+ *   3. 计算 FIRST / FOLLOW。
+ *   4. 扫描每个状态：完成项目若其 FOLLOW 与可移进终结符相交 → shift-reduce；
+ *      两个完成项目的 FOLLOW 相交 → reduce-reduce。
+ *
  * @param cfg CFG
  * @param hooks 可选钩子
  */
@@ -219,13 +227,18 @@ export function detectSLRConflicts(cfg: CFG, hooks: SLRHooks = {}): SLRResult {
   const first = computeFirst(cfg);
   const follow = computeFollow(cfg, first);
 
-  // 起始项目集：S' → · S  —— 这里用起始符的第一条产生式 dot=0
-  const startProdIndex = cfg.productions.findIndex((p) => p.lhs === cfg.start);
-  const initialItems = closure(
-    [{ prodIndex: startProdIndex >= 0 ? startProdIndex : 0, dot: 0 }],
-    cfg.productions,
-    cfg.nonTerminals,
-  );
+  // 增广：在产生式表头部插入 S' → start（不计入用户可见的产生式，
+  // 仅用于驱动 LR(0) 自动机；所有用户产生式的索引向后偏移 +1）。
+  const AUG_START = '__START__';
+  const augProductions: Production[] = [
+    { lhs: AUG_START, rhs: [cfg.start] },
+    ...cfg.productions,
+  ];
+  const augNonTerminals = new Set(cfg.nonTerminals);
+  augNonTerminals.add(AUG_START);
+
+  // 起始项目集：S' → · start（prodIndex 0 = 增广产生式）
+  const initialItems = closure([{ prodIndex: 0, dot: 0 }], augProductions, augNonTerminals);
 
   const states: LR0State[] = [];
   const keyToId = new Map<string, number>();
@@ -240,13 +253,13 @@ export function detectSLRConflicts(cfg: CFG, hooks: SLRHooks = {}): SLRResult {
     // 收集所有点后符号
     const symbols = new Set<string>();
     for (const it of items) {
-      const s = symbolAfterDot(it, cfg.productions);
+      const s = symbolAfterDot(it, augProductions);
       if (s !== undefined) symbols.add(s);
     }
     for (const sym of symbols) {
-      const moved = gotoSet(items, sym, cfg.productions);
+      const moved = gotoSet(items, sym, augProductions);
       if (moved.length === 0) continue;
-      const closed = closure(moved, cfg.productions, cfg.nonTerminals);
+      const closed = closure(moved, augProductions, augNonTerminals);
       const k = stateKey(closed);
       let targetId = keyToId.get(k);
       if (targetId === undefined) {
@@ -260,25 +273,27 @@ export function detectSLRConflicts(cfg: CFG, hooks: SLRHooks = {}): SLRResult {
     }
   }
 
-  // 扫描冲突
+  // 扫描冲突（只看用户产生式，跳过增广产生式 S' → start，prodIndex 0）
   const conflicts: Conflict[] = [];
   for (const st of states) {
-    const complete: Item[] = st.items.filter((it) => isComplete(it, cfg.productions));
+    const complete: Item[] = st.items.filter(
+      (it) => it.prodIndex !== 0 && isComplete(it, augProductions),
+    );
     const shiftable = new Set<string>();
     for (const it of st.items) {
-      const s = symbolAfterDot(it, cfg.productions);
+      const s = symbolAfterDot(it, augProductions);
       if (s !== undefined) shiftable.add(s);
     }
     // shift-reduce：完成项目 B→γ· ，且某 a ∈ FOLLOW(B) 是可移进终结符
     for (const it of complete) {
-      const lhs = cfg.productions[it.prodIndex]!.lhs;
-      for (const a of follow[lhs]!) {
+      const lhs = augProductions[it.prodIndex]!.lhs;
+      for (const a of follow[lhs] ?? []) {
         if (shiftable.has(a) && !isNT(a, cfg.nonTerminals)) {
           const c: Conflict = {
             state: st.id,
             kind: 'shift-reduce',
             terminal: a,
-            detail: `state ${st.id}: 可移进 ${a} 又可规约 ${cfg.productions[it.prodIndex]!.lhs} → ${cfg.productions[it.prodIndex]!.rhs.length === 0 ? 'ε' : cfg.productions[it.prodIndex]!.rhs.join(' ')}`,
+            detail: `state ${st.id}: 可移进 ${a} 又可规约 ${augProductions[it.prodIndex]!.lhs} → ${augProductions[it.prodIndex]!.rhs.length === 0 ? 'ε' : augProductions[it.prodIndex]!.rhs.join(' ')}`,
           };
           conflicts.push(c);
           hooks.onConflict?.(c);
@@ -288,9 +303,9 @@ export function detectSLRConflicts(cfg: CFG, hooks: SLRHooks = {}): SLRResult {
     // reduce-reduce：两个完成项目 FOLLOW 相交
     for (let i = 0; i < complete.length; i++) {
       for (let j = i + 1; j < complete.length; j++) {
-        const la = cfg.productions[complete[i]!.prodIndex]!.lhs;
-        const lb = cfg.productions[complete[j]!.prodIndex]!.lhs;
-        const overlap = [...follow[la]!].filter((t) => follow[lb]!.has(t));
+        const la = augProductions[complete[i]!.prodIndex]!.lhs;
+        const lb = augProductions[complete[j]!.prodIndex]!.lhs;
+        const overlap = [...(follow[la] ?? [])].filter((t) => follow[lb]?.has(t));
         for (const a of overlap) {
           const c: Conflict = {
             state: st.id,
