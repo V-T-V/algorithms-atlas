@@ -82,7 +82,7 @@ test('Dijkstra：与 Bellman-Ford 对照一致（随机加权图）', () => {
   for (let t = 0; t < 40; t++) {
     const n = 3 + Math.floor(rng() * 6);
     const g = genGraph(rng, n);
-    const wg: SimpleGraph = { nodes: g.nodes, edges: g.edges.map((e) => ({ ...e, weight: 1 + Math.floor(rng() * 9) })) };
+    const wg = { nodes: g.nodes, edges: g.edges.map((e) => ({ from: e.from, to: e.to, weight: 1 + Math.floor(rng() * 9) })) };
     const src = wg.nodes[Math.floor(rng() * n)]!;
     const dij = dijkstra(wg, src);
     const bf = bellmanFord(wg, src);

@@ -47,7 +47,7 @@ test('sched-llf-2：到达时间在未来的任务在到达前不被选中', () 
   const { completion } = llfSchedule(tasks);
   assert.equal(completion.A, 1);
   // B 在 t>=5 才能开始，最迟 6 完成
-  assert.ok(completion.B >= 6 && completion.B <= 6);
+  assert.ok(completion.B! >= 6 && completion.B! <= 6);
 });
 
 test('sched-llf-2：空任务列表安全返回', () => {

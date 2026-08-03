@@ -57,7 +57,7 @@ test('topological-sort 自环视为环（非 DAG）', () => {
 
 test('topological-sort 属性：随机 DAG 的拓扑序对所有边合法', () => {
   // 只在 i<j 间加边 → 必为 DAG；校验输出序对每条边 u→v 都有 u 在 v 前
-  const validTopo = (order: string[], edges: Array<{ from: string; to: string }>): boolean => {
+  const validTopo = (order: string[], edges: ReadonlyArray<{ from: string; to: string; weight?: number }>): boolean => {
     const pos = new Map(order.map((n, i) => [n, i]));
     for (const e of edges) {
       if (pos.has(e.from) && pos.has(e.to) && pos.get(e.from)! >= pos.get(e.to)!) return false;
