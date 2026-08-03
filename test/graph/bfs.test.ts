@@ -72,3 +72,25 @@ test('bfs 钩子被调用', () => {
   assert.deepEqual(discovers[0], ['1', null]); // 起点无父
   assert.equal(discovers.length, 7);
 });
+
+test('bfs 自环不导致死循环', () => {
+  const g: GraphInput = { nodes: ['A', 'B'], edges: [{ from: 'A', to: 'A' }, { from: 'A', to: 'B' }] };
+  // A 有自环，但 visited 防重入，应正常终止并访问 A、B
+  assert.deepEqual(bfs(g, 'A'), ['A', 'B']);
+});
+
+test('bfs 空图 / 空节点列表', () => {
+  assert.deepEqual(bfs({ nodes: [], edges: [] }, 'A'), []);
+});
+
+test('bfs 重复边不破坏访问顺序', () => {
+  const g: GraphInput = {
+    nodes: ['A', 'B', 'C'],
+    edges: [
+      { from: 'A', to: 'B' },
+      { from: 'A', to: 'B' }, // 重复边
+      { from: 'B', to: 'C' },
+    ],
+  };
+  assert.deepEqual(bfs(g, 'A'), ['A', 'B', 'C']);
+});
