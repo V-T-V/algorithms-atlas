@@ -1,6 +1,7 @@
 // Dynamic Convex Hull (Incremental) · 公共入口（懒加载）
 
 import type { Demo } from '../../../types.ts';
+import { buildTrace } from './trace.ts';
 
 export { meta } from './meta.ts';
 export { DynamicConvexHull, type Point, type DynamicHullHooks } from './impl.ts';
