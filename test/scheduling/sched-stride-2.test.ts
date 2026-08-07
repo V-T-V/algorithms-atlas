@@ -38,9 +38,9 @@ test('sched-stride-2：完成时 completion 记录完成步', () => {
     { pid: 'B', burst: 2, weight: 1 },
   ];
   const { completion } = strideSchedule(tasks, 20);
-  assert.ok(completion.A > 0);
-  assert.ok(completion.B > 0);
-  assert.ok(completion.A <= 4);
+  assert.ok((completion.A ?? -1) > 0);
+  assert.ok((completion.B ?? -1) > 0);
+  assert.ok((completion.A ?? Infinity) <= 4);
 });
 
 test('sched-stride-2：onPick 钩子每次选中触发', () => {
